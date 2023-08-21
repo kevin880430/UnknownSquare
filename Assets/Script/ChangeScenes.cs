@@ -2,18 +2,15 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class ChangeScenes : MonoBehaviour
 {
-    public string Stage2SceneName = "Stage2";                                                           //Stage2Sceneの名前を付ける
-    public string MainSceneName = "Main";                                                               //MainSceneの名前を付ける
- 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public string NextSceneName = "Stage2";                                                           //次のScene名前
+    private Transform player;                                                                       　//プレイヤーの位置
+
+    public void Start()
     {
-        if (collision.gameObject.name==("Player")&& SceneManager.GetActiveScene().name == MainSceneName)        //プレイヤーと矢印接触すると次のStageに遷移
-        {
-            SceneManager.LoadScene("Stage2");
-        }
-        if (collision.gameObject.name == ("Player")&& SceneManager.GetActiveScene().name == Stage2SceneName)    //プレイヤーと矢印接触すると次のGameClearに遷移
-        {
-            SceneManager.LoadScene("GameClear");
-        }
+        this.transform.tag = "Gate";
+    }
+    public void LoadScene()
+    {
+        SceneManager.LoadScene(NextSceneName);                                                         //次のSceneに遷移
     }
 }

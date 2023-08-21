@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 public class PlayerHealth : MonoBehaviour
 {
     public int maxHealth = 3;                                                           //プレイヤー最大hp
-    public int currentHealth;                                                           //プレイヤー現在hp
+    public static int currentHealth;                                                    //プレイヤー現在hp
     public Image hpBar;                                                                 //hpバーの図形
     public GameObject CrashAnimation;                                                   //アニメーションを格納する
     private void Start()

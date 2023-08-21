@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-
+using UnityEngine.UI;
 public class PlayerControl : MonoBehaviour
 {
     public float rotationSpeed = 8.63f;                                           //プレイヤー回転スピード
@@ -14,15 +14,31 @@ public class PlayerControl : MonoBehaviour
     public float scaleDOWNSpeed=0.998f;                                           //縮小のスピード
     public static bool isMega;                                                    //プレイヤーが最大化かどうかのチェック
 
+
+    
+    public PlayerData PlayerData { get; private set; }
+
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();                                           //プレイヤーのrigidbody2Dを取得する
         initialMass = rb.mass;                                                      //プレイヤーの質量を初期化
     }
-    
+    private void OnEnable()
+    {
+        PlayerData = PlayerPersistence.LoadData();
+
+        transform.localScale = PlayerData.Size;
+        PlayerHealth.currentHealth = PlayerData.Health;
+    }
+    private void OnDisable()
+    {
+        PlayerPersistence.SaveData(this);
+    }
 
     private void Update()
     {
+
 
         if (Input.GetKey(KeyCode.Z))
         {
@@ -49,10 +65,10 @@ public class PlayerControl : MonoBehaviour
             }
             if (newScale.x <= minScale)                                                                             //大きさが最小化になったら
             {
-                
                 rb.mass = initialMass;                                                                              // 質量をリセット
             }
         }
+
     }
 
     private void FixedUpdate()
@@ -80,6 +96,12 @@ public class PlayerControl : MonoBehaviour
         }
         
     }
-    
+    private void OnTriggerEnter2D(Collider2D coll)
+    {
+        if (coll.gameObject.tag == "Gate")
+        {
+            coll.gameObject.GetComponent<ChangeScenes>().LoadScene();
+        }
+    }
 
 }

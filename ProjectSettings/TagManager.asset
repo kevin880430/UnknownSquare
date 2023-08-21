@@ -12,6 +12,7 @@ TagManager:
   - SquarePlayer
   - CirclePlayer
   - TrianglePlayer
+  - Gate
   layers:
   - Default
   - TransparentFX
