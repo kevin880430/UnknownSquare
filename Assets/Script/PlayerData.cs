@@ -9,4 +9,5 @@ public class PlayerData : MonoBehaviour
     public int Mass { get; set; }
     public Vector3 Size { get; set; }
 
+    public int Shape { get; set; }
 }

@@ -4,69 +4,73 @@ public class PlayerControl : MonoBehaviour
 {
     public float rotationSpeed = 8.63f;                                           //プレイヤー回転スピード
     public float friction = 1f;                                                   //摩擦力
-    private Rigidbody2D rb;                                                       //Rigidbody2Dを格納する
+    public static Rigidbody2D rb;                                                       //Rigidbody2Dを格納する
     public float scaleUPSpeed = 1.001f;　　　　　　　　　　　　　　　　　　       //拡大のスピード
     public float maxScale = 2f;                                                   //最大のサイズ
-    public float minScale = 1f;                                                   //最小のサイズ
+    public float minScale = 0f;                                                   //最小のサイズ
     private float initialMass;                                                    //初期の質量
-    public float MscaleUPSpeed = 0.999f;                                          //質量減衰のスピード 
+    public float MscaleUPSpeed = 0.99f;                                          //質量減衰のスピード 
     public float MscaleDOWNSpeed = 1.001f;                                        //質量増加のスピード 
     public float scaleDOWNSpeed=0.998f;                                           //縮小のスピード
-    public static bool isMega;                                                    //プレイヤーが最大化かどうかのチェック
-
-
+    public static bool isMega;
+    public float Scale=0.01f;
     
+
+
+
     public PlayerData PlayerData { get; private set; }
 
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody2D>();                                           //プレイヤーのrigidbody2Dを取得する
-        initialMass = rb.mass;                                                      //プレイヤーの質量を初期化
+        //プレイヤーのrigidbody2Dを取得する
+        //プレイヤーの質量を初期化
+        rb = GetComponent<Rigidbody2D>();                                          
+        initialMass = rb.mass;                                                      
     }
     private void OnEnable()
     {
+        //プレイヤーのパラメータを取得
         PlayerData = PlayerPersistence.LoadData();
-
         transform.localScale = PlayerData.Size;
         PlayerHealth.currentHealth = PlayerData.Health;
-    }
-    private void OnDisable()
-    {
-        PlayerPersistence.SaveData(this);
+        ShapeChange.currentShapeIndex = PlayerData.Shape;
+        
     }
 
     private void Update()
     {
-
-
+        //ボタンを押すと体積、質量大きくなる
         if (Input.GetKey(KeyCode.Z))
-        {
-            Vector3 newScale = transform.localScale * scaleUPSpeed;                                                 //拡大した大きさを新しい大きさに代入
-            if (newScale.x <= maxScale && newScale.y <= maxScale && newScale.z <= maxScale)                         //新しい大きさが最大になるまでに
+        { 
+            if (transform.localScale.x <= maxScale )                                                                                  
             {
-                transform.localScale = newScale;                                                                    //大きさを変更する                                           
-                rb.mass *=  MscaleUPSpeed;                                                                          //拡大する同時に質量を調整
+                this.gameObject.transform.localScale+= new Vector3(Scale,Scale,0f);                                                                                             
+                rb.mass *=  MscaleUPSpeed;                                                                          
             }
-            if (newScale.x >= maxScale)                                                                             //大きさが最大になったら
-            {
-                rb.mass = initialMass*0.5f;                                                                         //質量を固定
-                isMega = true;                                                                                      //最大化状態チェックonにする
-            }
+
         }
+        //最大化の時質量を固定、最大化状態チェックonにする
+        if (transform.localScale.x >= maxScale)                                                                             
+        {
+            rb.mass = initialMass * 0.5f;
+            isMega = true;                                                                                      
+        }
+        //ボタンを押すと体積、質量小さくくなる、最大化チェック状態offにする
         if (Input.GetKey(KeyCode.X))
         {
-            Vector3 newScale = transform.localScale * scaleDOWNSpeed;                                               //拡大した大きさを新しい大きさに代入
-            if (newScale.x >= minScale && newScale.y >= minScale && newScale.z >= minScale)                         //新しい大きさが最小になるまでに
+            if (transform.localScale.x >= minScale )                         
             {
-                transform.localScale = newScale;
-                rb.mass *=MscaleDOWNSpeed;                                                                          //縮小する同時に質量を調整
-                isMega = false;                                                                                     //最大化チェック状態offにする
+                this.gameObject.transform.localScale += new Vector3(-Scale,-Scale, 0f);
+                rb.mass *= MscaleDOWNSpeed;
+                isMega = false;                                                                                     
             }
-            if (newScale.x <= minScale)                                                                             //大きさが最小化になったら
-            {
-                rb.mass = initialMass;                                                                              // 質量をリセット
-            }
+            
+        }
+        // 最小化の時質量を固定
+        if (transform.localScale.x <= minScale)
+        {
+            rb.mass = initialMass;
         }
 
     }
@@ -100,6 +104,7 @@ public class PlayerControl : MonoBehaviour
     {
         if (coll.gameObject.tag == "Gate")
         {
+            PlayerPersistence.SaveData(this);
             coll.gameObject.GetComponent<ChangeScenes>().LoadScene();
         }
     }

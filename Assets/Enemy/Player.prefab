@@ -77,6 +77,7 @@ MonoBehaviour:
   MscaleUPSpeed: 0.999
   MscaleDOWNSpeed: 1.002
   scaleDOWNSpeed: 0.98
+  Scale: 0.01
 --- !u!114 &2978643327189136533
 MonoBehaviour:
   m_ObjectHideFlags: 0
