@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 public class PlayerControl : MonoBehaviour
 {
     public float rotationSpeed = 8.63f;                                           //プレイヤー回転スピード
@@ -14,7 +15,7 @@ public class PlayerControl : MonoBehaviour
     public float scaleDOWNSpeed=0.998f;                                           //縮小のスピード
     public static bool isMega;
     public float Scale=0.01f;
-    
+    public static string Stage;
 
 
 
@@ -26,7 +27,8 @@ public class PlayerControl : MonoBehaviour
         //プレイヤーのrigidbody2Dを取得する
         //プレイヤーの質量を初期化
         rb = GetComponent<Rigidbody2D>();                                          
-        initialMass = rb.mass;                                                      
+        initialMass = rb.mass;
+        Stage = SceneManager.GetActiveScene().name;
     }
     private void OnEnable()
     {

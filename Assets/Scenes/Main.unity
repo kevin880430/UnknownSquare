@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &73361446 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2978643327189136540, guid: 74a09bd8357331a479d5ae865408f4d9, type: 3}
+  m_PrefabInstance: {fileID: 2978643327181016105}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &142571626
 GameObject:
   m_ObjectHideFlags: 0
@@ -746,6 +751,9 @@ MonoBehaviour:
   titleSceneName: Title
   gameOverSceneName: GameOver
   clearSceneName: GameClear
+  AnykeyText: {fileID: 0}
+  BottonCanvas: {fileID: 0}
+  SaveDataCanvas: {fileID: 0}
 --- !u!4 &1187305148
 Transform:
   m_ObjectHideFlags: 0
@@ -1280,6 +1288,10 @@ PrefabInstance:
       propertyPath: Scale
       value: 0.01
       objectReference: {fileID: 0}
+    - target: {fileID: 2978643327189136543, guid: 74a09bd8357331a479d5ae865408f4d9, type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 73361446}
     - target: {fileID: 2978643327189136543, guid: 74a09bd8357331a479d5ae865408f4d9, type: 3}
       propertyPath: minScale
       value: 1

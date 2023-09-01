@@ -27,6 +27,6 @@ public class PlayerHealth : MonoBehaviour
     {
         
         Debug.Log("Player has died!");                                                  //死亡メッセージを表示する
-       
+ 
     }
 }

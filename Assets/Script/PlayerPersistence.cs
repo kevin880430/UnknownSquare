@@ -5,16 +5,16 @@ using UnityEngine;
 public static class PlayerPersistence 
 {
     
- public static void SaveData(PlayerControl rb)
+ public static void SaveData(PlayerControl Player)
     {
-        PlayerPrefs.SetFloat("x", rb.transform.position.x);
-        PlayerPrefs.SetFloat("y", rb.transform.position.y);
-        PlayerPrefs.SetFloat("z", rb.transform.position.z);
+        PlayerPrefs.SetFloat("x", Player.transform.position.x);
+        PlayerPrefs.SetFloat("y", Player.transform.position.y);
+        PlayerPrefs.SetFloat("z", Player.transform.position.z);
         PlayerPrefs.SetInt("Health", PlayerHealth.currentHealth);
         PlayerPrefs.SetInt("Shape",ShapeChange.currentShapeIndex);
-        PlayerPrefs.SetFloat("PlayerScale_x", rb.transform.localScale.x);
-        PlayerPrefs.SetFloat("PlayerScale_y", rb.transform.localScale.y);
-        PlayerPrefs.SetFloat("PlayerScale_z", rb.transform.localScale.z);
+        PlayerPrefs.SetFloat("PlayerScale_x", Player.transform.localScale.x);
+        PlayerPrefs.SetFloat("PlayerScale_y", Player.transform.localScale.y);
+        PlayerPrefs.SetFloat("PlayerScale_z", Player.transform.localScale.z);
     }  
  public static PlayerData LoadData()
     {
