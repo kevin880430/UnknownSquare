@@ -276,6 +276,8 @@ MonoBehaviour:
   MscaleDOWNSpeed: 1.002
   scaleDOWNSpeed: 0.998
   Scale: 0.01
+  FromOtherScene: 0
+  GameManager: {fileID: 0}
 --- !u!50 &14722544
 Rigidbody2D:
   serializedVersion: 4
@@ -4107,7 +4109,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1748413253}
         m_TargetAssemblyTypeName: SaveLoadSystem, Assembly-CSharp
-        m_MethodName: LoadFromJson
+        m_MethodName: LoadStageFromJson
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4465,7 +4467,7 @@ GameObject:
   - component: {fileID: 1748413252}
   - component: {fileID: 1748413253}
   m_Layer: 0
-  m_Name: Title
+  m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4505,6 +4507,7 @@ MonoBehaviour:
   AnykeyText: {fileID: 1378397046}
   BottonCanvas: {fileID: 405091395}
   SaveDataCanvas: {fileID: 2103041862}
+  SystemPageCanvas: {fileID: 0}
 --- !u!114 &1748413253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4517,6 +4520,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 138be587ec25f2349929a948b99c2b66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: {fileID: 0}
+  FromTitle: 0
 --- !u!1 &1778427168
 GameObject:
   m_ObjectHideFlags: 0

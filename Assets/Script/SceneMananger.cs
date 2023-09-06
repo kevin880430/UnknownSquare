@@ -17,7 +17,7 @@ public class SceneMananger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (SceneManager.GetActiveScene().name == titleSceneName && Input.anyKeyDown && !SaveDataCanvas.activeInHierarchy)               //タイトル画面anyKeyでメイン画面遷移
+        if (SceneManager.GetActiveScene().name == titleSceneName && Input.anyKeyDown && !SaveDataCanvas.activeInHierarchy)//タイトル画面anyKeyでメイン画面遷移
         {
             AnykeyText.SetActive(false);
             BottonCanvas.SetActive(true);

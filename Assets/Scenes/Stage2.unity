@@ -1552,6 +1552,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2978643327189136543, guid: 74a09bd8357331a479d5ae865408f4d9, type: 3}
+      propertyPath: title
+      value: 
+      objectReference: {fileID: 1351041010}
+    - target: {fileID: 2978643327189136543, guid: 74a09bd8357331a479d5ae865408f4d9, type: 3}
+      propertyPath: GameManager
+      value: 
+      objectReference: {fileID: 1351041010}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 74a09bd8357331a479d5ae865408f4d9, type: 3}
 --- !u!1 &1291592604 stripped
@@ -1572,7 +1580,7 @@ GameObject:
   - component: {fileID: 1351041013}
   - component: {fileID: 1351041014}
   m_Layer: 0
-  m_Name: Title
+  m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1639,6 +1647,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 1291592604}
+  FromTitle: 1
 --- !u!1 &1374154831
 GameObject:
   m_ObjectHideFlags: 0
@@ -2091,7 +2100,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1774960687
 Transform:
   m_ObjectHideFlags: 0

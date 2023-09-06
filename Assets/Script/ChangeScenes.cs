@@ -4,7 +4,7 @@ public class ChangeScenes : MonoBehaviour
 {
     public string NextSceneName = "Stage2";                                                           //次のScene名前
     private Transform player;                                                                       　//プレイヤーの位置
-
+    private PlayerControl PlayerControl;
     public void Start()
     {
         this.transform.tag = "Gate";

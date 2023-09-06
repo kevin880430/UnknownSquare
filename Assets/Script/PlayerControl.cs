@@ -16,28 +16,25 @@ public class PlayerControl : MonoBehaviour
     public static bool isMega;
     public float Scale=0.01f;
     public static string Stage;
-
-
+    
+    
 
     public PlayerData PlayerData { get; private set; }
 
 
     private void Start()
     {
-        //プレイヤーのrigidbody2Dを取得する
-        //プレイヤーの質量を初期化
         rb = GetComponent<Rigidbody2D>();                                          
         initialMass = rb.mass;
         Stage = SceneManager.GetActiveScene().name;
+        
     }
     private void OnEnable()
     {
-        //プレイヤーのパラメータを取得
-        PlayerData = PlayerPersistence.LoadData();
-        transform.localScale = PlayerData.Size;
-        PlayerHealth.currentHealth = PlayerData.Health;
-        ShapeChange.currentShapeIndex = PlayerData.Shape;
-        
+            PlayerData = PlayerPersistence.LoadData();
+            transform.localScale = PlayerData.Size;
+            PlayerHealth.currentHealth = PlayerData.Health;
+            ShapeChange.currentShapeIndex = PlayerData.Shape;
     }
 
     private void Update()
