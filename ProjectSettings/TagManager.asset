@@ -13,6 +13,7 @@ TagManager:
   - CirclePlayer
   - TrianglePlayer
   - Gate
+  - Reflect
   layers:
   - Default
   - TransparentFX
