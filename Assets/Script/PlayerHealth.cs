@@ -3,30 +3,42 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 public class PlayerHealth : MonoBehaviour
 {
-    public int maxHealth = 3;                                                           //プレイヤー最大hp
-    public static int currentHealth;                                                    //プレイヤー現在hp
-    public Image hpBar;                                                                 //hpバーの図形
-    public GameObject CrashAnimation;                                                   //アニメーションを格納する
+    //プレイヤー最大hp
+    public int maxHealth = 3;
+    //プレイヤー現在hp
+    public static int currentHealth;
+    //hpバーの図形
+    public Image hpBar;
+    //アニメーションを格納する
+    public GameObject CrashAnimation;                                                   
     private void Start()
     {
-        currentHealth = maxHealth;                                                      //プレイヤーhpを初期化する
+        //プレイヤーhpを初期化する
+        currentHealth = maxHealth;                                                     
     }
     public void TakeDamage(int damageAmount)
     {
-        currentHealth -= damageAmount;                                                  //ダメージ受けたらhpを減る    
-        hpBar.fillAmount -= 0.334f;                                                     //hpバー長さを減る
-        if (currentHealth <= 0)                                                         //hpが0以下になったら
+        //ダメージ受けたらhpを減る    
+        currentHealth -= damageAmount;
+        //hpバー長さを減る
+        hpBar.fillAmount -= 0.334f;
+        //hpが0以下になったら
+        if (currentHealth <= 0)                                                         
         {
-            Die();                                                                      //死亡メソッドを呼ぶ
-            Instantiate(CrashAnimation, transform.position, transform.rotation);        //死亡アニメーションを生成
-            SceneManager.LoadScene("GameOver");                                         //GameOverに画面遷移
+            //死亡メッセージを表示する
+            Debug.Log("Player has died!");
+            //死亡アニメーションを生成
+            Instantiate(CrashAnimation, transform.position, transform.rotation);
+            Destroy(this.gameObject);
+            //死亡メソッドを呼ぶ
+            Invoke("Die", 2f);
+
         }
     }
 
     private void Die()
     {
-        
-        Debug.Log("Player has died!");                                                  //死亡メッセージを表示する
- 
+        //GameOverに画面遷移
+        SceneManager.LoadScene("GameOver");
     }
 }

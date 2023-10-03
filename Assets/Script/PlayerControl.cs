@@ -3,16 +3,27 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 public class PlayerControl : MonoBehaviour
 {
-    public float rotationSpeed = 8.63f;                                           //プレイヤー回転スピード
-    public float friction = 1f;                                                   //摩擦力
-    public static Rigidbody2D rb;                                                       //Rigidbody2Dを格納する
-    public float scaleUPSpeed = 1.001f;　　　　　　　　　　　　　　　　　　       //拡大のスピード
-    public float maxScale = 2f;                                                   //最大のサイズ
-    public float minScale = 0f;                                                   //最小のサイズ
-    private float initialMass;                                                    //初期の質量
-    public float MscaleUPSpeed = 0.99f;                                          //質量減衰のスピード 
-    public float MscaleDOWNSpeed = 1.001f;                                        //質量増加のスピード 
-    public float scaleDOWNSpeed=0.998f;                                           //縮小のスピード
+    //プレイヤー回転スピード
+    public float rotationSpeed = 8.63f;
+    //摩擦力
+    public float friction = 1f;
+    //Rigidbody2Dを格納する
+    public static Rigidbody2D rb;
+    //拡大のスピード
+    public float scaleUPSpeed = 1.001f;
+    //縮小のスピード
+    public float scaleDOWNSpeed = 0.998f;
+    //最大のサイズ
+    public float maxScale = 2f;
+    //最小のサイズ
+    public float minScale = 0f;
+    //初期の質量
+    private float initialMass;
+    //質量減衰のスピード 
+    public float MscaleUPSpeed = 0.99f;
+    //質量増加のスピード 
+    public float MscaleDOWNSpeed = 1.001f;
+                                             
     public static bool isMega;
     public float Scale=0.01f;
     public static string Stage;
@@ -47,7 +58,7 @@ public class PlayerControl : MonoBehaviour
                 this.gameObject.transform.localScale+= new Vector3(Scale,Scale,0f);                                                                                             
                 rb.mass *=  MscaleUPSpeed;                                                                          
             }
-
+            
         }
         //最大化の時質量を固定、最大化状態チェックonにする
         if (transform.localScale.x >= maxScale)                                                                             
@@ -76,31 +87,33 @@ public class PlayerControl : MonoBehaviour
 
     private void FixedUpdate()
     {
-        float moveHorizontal = Input.GetAxis("Horizontal");                                                         //方向キー入力を取得する
-
-        if (moveHorizontal > 0)                                         
+        //方向キー入力を取得する
+        float moveHorizontal = Input.GetAxis("Horizontal");
+        
+        if (moveHorizontal > 0)
         {
-            rb.AddTorque(-rotationSpeed);                                                                           //入力方向に応じて回転させる
-
-                                                                                                                    
-            rb.angularVelocity *= friction;                                                                         // 摩擦力を加える
+            //入力方向に応じて回転させる
+            rb.AddTorque(-rotationSpeed);
+            // 摩擦力を加える                                                                                             
+            rb.angularVelocity *= friction;                                                                         
         }
         else if (moveHorizontal < 0)
         {
-            rb.AddTorque(rotationSpeed);                                                                            //入力方向に応じて回転させる
-
-
-            rb.angularVelocity *= friction;                                                                         // 摩擦力を加える
+            //入力方向に応じて回転させる
+            rb.AddTorque(rotationSpeed);
+            // 摩擦力を加える
+            rb.angularVelocity *= friction;                                                                         
         }
         else
         {
-            
-            rb.angularVelocity *= friction;                                                                         // 摩擦力を加えて停止する
+            // 摩擦力を加えて停止する
+            rb.angularVelocity *= friction;                                                                         
         }
         
     }
     private void OnTriggerEnter2D(Collider2D coll)
     {
+        //チェックポイントで画面遷移
         if (coll.gameObject.tag == "Gate")
         {
             PlayerPersistence.SaveData(this);

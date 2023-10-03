@@ -1258,9 +1258,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Press C to Become
+  m_Text: 'Press "C"to Change
 
-    Circle
+    Shape
 
 '
 --- !u!222 &982298312

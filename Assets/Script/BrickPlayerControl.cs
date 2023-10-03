@@ -7,26 +7,43 @@ public class BrickPlayerControl : MonoBehaviour
     public int maxHealth = 3;
     private int currentHealth;
     public Image hpBar;
-    private float currentWidth = 1f; // 玩家的当前宽度
-    public float maxWidth = 3f; // 最大宽度
-
+    // プレイヤー現在の広さ
+    private float currentWidth = 1f; 
+    // プレイヤーの最大広さ
+    public float maxWidth = 3f; 
+    //アニメーションを格納する
+    public GameObject CrashAnimation;
     private void Start()
     {
         currentHealth = maxHealth;
     }
     public void TakeDamage(int damageAmount)
     {
-        currentHealth -= damageAmount;                                                  //ダメージ受けたらhpを減る    
-        hpBar.fillAmount -= 0.334f;                                                     //hpバー長さを減る
-        if (currentHealth <= 0)                                                         //hpが0以下になったら
+        //ダメージ受けたらhpを減る  
+        currentHealth -= damageAmount;
+        //hpバー長さを減る
+        hpBar.fillAmount -= 0.334f;
+        //hpが0以下になったら
+        if (currentHealth <= 0)                                                         
         {
-            SceneManager.LoadScene("GameOver");                                         //GameOverに画面遷移
+            //死亡メッセージを表示する
+            Debug.Log("Player has died!");
+            //死亡アニメーションを生成
+            Instantiate(CrashAnimation, transform.position, transform.rotation);
+            Destroy(this.gameObject);
+            //死亡メソッドを呼ぶ
+            Invoke("Die", 2f);                                         
         }
     }
     private void Update()
     {
         MovePlayer();
 
+    }
+    private void Die()
+    {
+        //GameOverに画面遷移
+        SceneManager.LoadScene("GameOver");
     }
 
     private void MovePlayer()

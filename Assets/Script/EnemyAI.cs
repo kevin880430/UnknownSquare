@@ -2,68 +2,88 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
-    public float moveSpeed = 3f;                                                                                           //敵の移動スピード     
-    public float attackRange = 2f;                                                                                         //敵の攻撃範囲 
-    public int attackDamage = 1;                                                                                           //敵の攻撃力
-    public float attackCooldown = 2f;                                                                                      //攻撃間隔
-
-    private Transform player;                                                                                              //プレイヤーの位置情報
-    private bool isPlayerInRange = false;                                                                                  //プレイヤー探知チェック    
-    private bool isAttacking = false;                                                                                      //攻撃判定
-    private float attackTimer = 0f;                                                                                        //攻撃タイマー
+    //敵の移動スピード
+    public float moveSpeed = 3f;
+    //敵の攻撃範囲 
+    public float attackRange = 2f;
+    //敵の攻撃力
+    public int attackDamage = 1;
+    //攻撃間隔
+    public float attackCooldown = 2f;
+    //プレイヤーの位置情報
+    private Transform player;
+    //プレイヤー探知チェック    
+    private bool isPlayerInRange = false;
+    //攻撃判定
+    private bool isAttacking = false;
+    //攻撃タイマー
+    private float attackTimer = 0f;                                                                                        
 
     private void Start()
     {
-        player = GameObject.Find("Player").transform;                                                                       //プレイヤーの位置情報を取得
+        //プレイヤーの位置情報を取得
+        player = GameObject.Find("Player").transform;                                                                       
     }
 
     private void Update()
     {
+        //プレイヤーとの距離は攻撃範囲内ならisPlayerRangeをチェック
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
-        isPlayerInRange = distanceToPlayer <= attackRange;                                                                  //プレイヤーとの距離は攻撃範囲内ならisPlayerRangeをチェック
-
-        if (isPlayerInRange && !isAttacking)                                                                                //isPlayerRangeチェックと攻撃判定ではない場合
+        isPlayerInRange = distanceToPlayer <= attackRange;
+        //isPlayerRangeチェックと攻撃判定ではない場合
+        if (isPlayerInRange && !isAttacking)                                                                                
         {
-            AttackPlayer();                                                                                                 //プレイヤーを攻撃する
+            //プレイヤーを攻撃する
+            AttackPlayer();                                                                                                 
         }
-        else if (!isPlayerInRange)                                                                                          //プレイヤーが攻撃範囲外なら
+        //プレイヤーが攻撃範囲外なら
+        else if (!isPlayerInRange)                                                                                          
         {
-            Move();                                                                                                         //パトロール
+            //パトロール
+            Move();                                                                                                         
         }
 
-        // タイマーの更新
-        if (isAttacking)                                                                                                    //攻撃判定on時
+       
+        //攻撃判定on時
+        if (isAttacking)                                                                                                    
         {
-            if (attackTimer >= attackCooldown)                                                                              //攻撃タイマーは攻撃間隔時間になったら
+            //攻撃タイマーは攻撃間隔時間になったら
+            if (attackTimer >= attackCooldown)                                                                             
             {
-                isAttacking = false;                                                                                        //攻撃の判定off
-                attackTimer = 0;                                                                                            //タイマーリセット
+                //攻撃の判定off
+                isAttacking = false;
+                //タイマーリセット
+                attackTimer = 0;                                                                                            
+            }
+            //タイマースタート
             }
             else
             {
-                attackTimer += Time.deltaTime;                                                                              //タイマースタート
+                attackTimer += Time.deltaTime;                                                                              
             }
-        }
-    }
+    } 
 
     private void Move()
     {
-        transform.Translate(Vector2.right * moveSpeed * Time.deltaTime);                                                    //右に移動する
-
-        if (transform.position.x >= 3f || transform.position.x <= -3f)                                                      //移動距離は3以上超えたら
+        //右に移動する
+        transform.Translate(Vector2.right * moveSpeed * Time.deltaTime);
+        //移動距離は3以上超えたら
+        if (transform.position.x >= 3f || transform.position.x <= -3f)                                                      
         {
-            moveSpeed *= -1;                                                                                                //移動方向を逆にする
-            transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);//自分の向きを左右反転
+            //移動方向を逆にする
+            moveSpeed *= -1;
+            //自分の向きを左右反転
+            transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
         }
     }
 
     private void AttackPlayer()
-    { 
-        isAttacking = true;                                                                                                 //攻撃を行うとき攻撃判定をon    
-            
-        Debug.Log("Attacking the player!");                                                                                 //攻撃アニメーションまだ追加していないのでDebugLogで表示
-
-        
-        player.GetComponent<PlayerHealth>().TakeDamage(attackDamage);                                                       // プレイヤーにダメージを与える処理を追加する
+    {
+        //攻撃を行うとき攻撃判定をon 
+        isAttacking = true;
+        //攻撃アニメーションまだ追加していないのでDebugLogで表示    
+        Debug.Log("Attacking the player!");
+        // プレイヤーにダメージを与える処理を追加する
+        player.GetComponent<PlayerHealth>().TakeDamage(attackDamage);                                                       
     }
 }

@@ -4,20 +4,25 @@ using UnityEngine;
 
 public class EnemyControl : MonoBehaviour
 {
-    public GameObject CrashAnimation;                                                       //潰されるアニメーションを格納する
-    public bool isPlayerMega = PlayerControl.isMega;                                        //PlayerControlからisMegaの判定を取得する
-  
+    //潰されるアニメーションを格納する
+    public GameObject CrashAnimation;
+    //PlayerControlからisMegaの判定を取得する
+    public bool isPlayerMega = PlayerControl.isMega;                                        
     void Update()
     {
-        isPlayerMega = PlayerControl.isMega;                                                //isMegaの判定常に確認する
+        //isMegaの判定常に確認する
+        isPlayerMega = PlayerControl.isMega;                                                
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("SquarePlayer")&&isPlayerMega)                  //最大化する正方形のプレイヤーと接触すると潰される
+        //最大化する正方形のプレイヤーと接触すると潰される
+        if (collision.gameObject.CompareTag("SquarePlayer")&&isPlayerMega)                 
         {
-           Instantiate(CrashAnimation, transform.position, transform.rotation);             //アニメーションを生成
-            Destroy(this.gameObject);                                                       //自分を削除する
+            //アニメーションを生成
+            Instantiate(CrashAnimation, transform.position, transform.rotation);
+            //自分を削除する
+            Destroy(this.gameObject);                                                       
         }
     }
 }

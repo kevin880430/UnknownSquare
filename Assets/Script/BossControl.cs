@@ -7,8 +7,10 @@ public class BossControl : MonoBehaviour
     public GameObject circleBulletPrefab;
     public GameObject squareBulletPrefab;
     public float shootInterval = 2f;
-    public float moveSpeed = 2f; // 移动速度
-    private int moveDirection = 1; // 移动方向，1 表示向右，-1 表示向左
+    // 移动速度
+    public float moveSpeed = 2f; 
+    //移動方向、1は右に
+    private int moveDirection = 1; 
     public int maxHealth = 3;
     private int currentHealth;
     public Image BosshpBar;
@@ -26,42 +28,50 @@ public class BossControl : MonoBehaviour
 
     private void MoveBoss()
     {
-        // 移动 Boss
+        // Bossを動かす
         Vector3 newPosition = transform.position + Vector3.right * moveDirection * moveSpeed * Time.deltaTime;
         transform.position = newPosition;
 
-        // 检查是否需要改变移动方向
+        // 一定の距離で移動方向を変更
         if (transform.position.x > 5f)
         {
-            moveDirection = -1; // 如果超过了一定位置，向左移动
+            moveDirection = -1; 
         }
         else if (transform.position.x < -5f)
         {
-            moveDirection = 1; // 如果超过了另一侧的位置，向右移动
+            moveDirection = 1; 
         }
     }
     public void TakeDamage(int damage)
     {
-        currentHealth -= damage;                                                  //ダメージ受けたらhpを減る    
-        BosshpBar.fillAmount -= 0.334f;                                                     //hpバー長さを減る
-        if (currentHealth <= 0)                                                         //hpが0以下になったら
+        //ダメージ受けたらhpを減る 
+        currentHealth -= damage;
+        //hpバー長さを減る
+        BosshpBar.fillAmount -= 0.334f;
+        //hpが0以下になったら
+        if (currentHealth <= 0)                                                         
         {
-            SceneManager.LoadScene("GameClear");                                         //GameOverに画面遷移
+            //GameOverに画面遷移
+            SceneManager.LoadScene("GameClear");                                         
         }
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
+        //反射された弾を受けたら
         if (other.CompareTag("Reflect"))
         {
+            //Bossにダメージを加えて
             TakeDamage(damage);
+            //弾を消す
             Destroy(other.gameObject);
         }
     }
     private void ShootRandomBullet()
     {
+        //ランダムで弾を飛ばす
         int randomBullet = Random.Range(0, 3);
         Vector3 spawnPosition = transform.position;
-
+        //三種類の弾
         switch (randomBullet)
         {
             case 0:

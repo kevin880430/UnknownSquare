@@ -5,25 +5,32 @@ using UnityEngine.UI;
 
 public class Blinker : MonoBehaviour
 {
-    public float speed = 1.0f;                                                      //点滅の速さ  
-    private Text text;                                                              //テキストオブジェクトを宣言
-    private float time;                                                             //時間周期
+    //点滅の速さ 
+    public float speed = 1.0f;
+    //テキストオブジェクトを宣言
+    private Text text;
+    //時間周期
+    private float time;                                                             
     void Start()
     {
-        text = this.gameObject.GetComponent<Text>();                                //テキストオブジェクトを取得
+        //テキストオブジェクトを取得
+        text = this.gameObject.GetComponent<Text>();                                
     }
 
     
     void Update()
     {
-        text.color = GetAlphaColor(text.color);                                     //テキストの色を変更メソッドを呼ぶ
+        //テキストの色を変更メソッドを呼ぶ
+        text.color = GetAlphaColor(text.color);                                     
     }
 
-    Color GetAlphaColor(Color color)                                                //色変更メソッド
+    Color GetAlphaColor(Color color)                                                
     {
-        time += Time.deltaTime * 5.0f * speed;                                      //時間流れのスピード
-        color.a = Mathf.Sin(time);                                                  //Sin関数で色を変更する
-
-        return color;                                                               //色情報を返却
+        //時間流れのスピード
+        time += Time.deltaTime * 5.0f * speed;
+        //Sin関数による周期で色を変更する
+        color.a = Mathf.Sin(time);
+        //色情報を返却
+        return color;                                                               
     }
 }
