@@ -4,6 +4,7 @@ using UnityEngine;
 [System.Serializable]
 public  class PlayerData 
 {
+    //•Û‘¶‚µ‚½‚¢ƒvƒŒƒCƒ„[î•ñ‚ğéŒ¾
     public Vector3 Location { get; set; }
     public int Health { get; set; }
     public int Mass { get; set; }

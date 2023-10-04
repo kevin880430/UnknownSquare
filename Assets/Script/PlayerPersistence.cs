@@ -7,6 +7,7 @@ public static class PlayerPersistence
     
  public static void SaveData(PlayerControl Player)
     {
+        //PlayerPref機能でデータを保存する
         PlayerPrefs.SetFloat("x", Player.transform.position.x);
         PlayerPrefs.SetFloat("y", Player.transform.position.y);
         PlayerPrefs.SetFloat("z", Player.transform.position.z);
@@ -18,6 +19,7 @@ public static class PlayerPersistence
     }  
  public static PlayerData LoadData()
     {
+        //PlayerPref機能でデータを読み込む
         float x = PlayerPrefs.GetFloat("x");
         float y = PlayerPrefs.GetFloat("y");
         float z = PlayerPrefs.GetFloat("z");
@@ -29,12 +31,14 @@ public static class PlayerPersistence
 
         PlayerData playerData = new PlayerData()
         {
+            //保存したいデータをキーで上書き
             Location = new Vector3(x, y, z),
             Health = health,
             Size = new Vector3(scale_x, scale_y, scale_z),
             Shape= shape
 
         };
+        //データを返却
         return playerData;
     }
 }

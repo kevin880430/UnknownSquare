@@ -270,14 +270,12 @@ MonoBehaviour:
   rotationSpeed: 8.11
   friction: 1
   scaleUPSpeed: 1.001
+  scaleDOWNSpeed: 0.998
   maxScale: 2
   minScale: 1
   MscaleUPSpeed: 0.999
   MscaleDOWNSpeed: 1.002
-  scaleDOWNSpeed: 0.998
   Scale: 0.01
-  FromOtherScene: 0
-  GameManager: {fileID: 0}
 --- !u!50 &14722544
 Rigidbody2D:
   serializedVersion: 4
@@ -2889,10 +2887,22 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 1023167148}
+  m_TargetGraphic: {fileID: 1543149172}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1748413253}
+        m_TargetAssemblyTypeName: SaveLoadSystem, Assembly-CSharp
+        m_MethodName: LoadStageFromJson
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1023167148
 MonoBehaviour:
   m_ObjectHideFlags: 0

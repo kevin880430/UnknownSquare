@@ -35,13 +35,17 @@ public class PlayerControl : MonoBehaviour
 
     private void Start()
     {
+        //RigidBody2Dを取得する
         rb = GetComponent<Rigidbody2D>();                                          
+        //質量を初期化
         initialMass = rb.mass;
+        //シーンの情報を保存
         Stage = SceneManager.GetActiveScene().name;
         
     }
     private void OnEnable()
     {
+        //前のシーンからのプレイヤーデータを読み込む
             PlayerData = PlayerPersistence.LoadData();
             transform.localScale = PlayerData.Size;
             PlayerHealth.currentHealth = PlayerData.Health;
