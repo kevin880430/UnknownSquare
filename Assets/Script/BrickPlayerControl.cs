@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class BrickPlayerControl : MonoBehaviour
 {
+    private SpriteRenderer sr;
     public float moveSpeed = 5f;
     public int maxHealth = 3;
     private int currentHealth;
@@ -16,6 +17,7 @@ public class BrickPlayerControl : MonoBehaviour
     private void Start()
     {
         currentHealth = maxHealth;
+        sr = GetComponent<SpriteRenderer>();
     }
     public void TakeDamage(int damageAmount)
     {
@@ -26,13 +28,14 @@ public class BrickPlayerControl : MonoBehaviour
         //hpが0以下になったら
         if (currentHealth <= 0)                                                         
         {
+            sr.enabled = false;
             //死亡メッセージを表示する
             Debug.Log("Player has died!");
             //死亡アニメーションを生成
             Instantiate(CrashAnimation, transform.position, transform.rotation);
-            Destroy(this.gameObject);
             //死亡メソッドを呼ぶ
-            Invoke("Die", 2f);                                         
+            Invoke("Die", 1f);
+            
         }
     }
     private void Update()
@@ -40,9 +43,9 @@ public class BrickPlayerControl : MonoBehaviour
         MovePlayer();
 
     }
-    private void Die()
+    public void Die()
     {
-        //GameOverに画面遷移
+        //GameOverに画面遷移   
         SceneManager.LoadScene("GameOver");
     }
 

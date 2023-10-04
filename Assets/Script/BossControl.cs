@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class BossControl : MonoBehaviour
 {
+    private SpriteRenderer sr;
     public GameObject triangleBulletPrefab;
     public GameObject circleBulletPrefab;
     public GameObject squareBulletPrefab;
@@ -17,6 +18,7 @@ public class BossControl : MonoBehaviour
     public int damage;
     private void Start()
     {
+        sr = GetComponent<SpriteRenderer>();
         currentHealth = maxHealth;
         InvokeRepeating("ShootRandomBullet", 0f, shootInterval);
     }
@@ -51,9 +53,14 @@ public class BossControl : MonoBehaviour
         //hpが0以下になったら
         if (currentHealth <= 0)                                                         
         {
-            //GameOverに画面遷移
-            SceneManager.LoadScene("GameClear");                                         
+            sr.enabled = false;
+            Invoke("Win", 1f);
         }
+    }
+    public void Win()
+    {
+        //GameClearに画面遷移   
+        SceneManager.LoadScene("GameClear");
     }
     private void OnTriggerEnter2D(Collider2D other)
     {

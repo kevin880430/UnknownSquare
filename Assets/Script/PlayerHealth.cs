@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 public class PlayerHealth : MonoBehaviour
 {
+    private SpriteRenderer sr;
     //プレイヤー最大hp
     public int maxHealth = 3;
     //プレイヤー現在hp
@@ -14,7 +15,8 @@ public class PlayerHealth : MonoBehaviour
     private void Start()
     {
         //プレイヤーhpを初期化する
-        currentHealth = maxHealth;                                                     
+        currentHealth = maxHealth;
+        sr = GetComponent<SpriteRenderer>();
     }
     public void TakeDamage(int damageAmount)
     {
@@ -29,14 +31,14 @@ public class PlayerHealth : MonoBehaviour
             Debug.Log("Player has died!");
             //死亡アニメーションを生成
             Instantiate(CrashAnimation, transform.position, transform.rotation);
-            Destroy(this.gameObject);
+            sr.enabled = false;
             //死亡メソッドを呼ぶ
             Invoke("Die", 2f);
 
         }
     }
 
-    private void Die()
+    public void Die()
     {
         //GameOverに画面遷移
         SceneManager.LoadScene("GameOver");
