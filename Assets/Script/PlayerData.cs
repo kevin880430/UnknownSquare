@@ -11,4 +11,5 @@ public  class PlayerData
     public Vector3 Size { get; set; }
     public int Shape { get; set; }
     public string Stage;
+    public float PlayTime { get; set; }
 }

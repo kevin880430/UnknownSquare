@@ -161,9 +161,9 @@ RectTransform:
   m_Father: {fileID: 1836080739}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 407, y: -66}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -553, y: 474}
   m_SizeDelta: {x: 800, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &142571628
@@ -236,8 +236,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 73361446}
   FromTitle: 1
-  dataNumber: 0
-  Stage: 
 --- !u!114 &230086654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -659,10 +657,10 @@ RectTransform:
   m_Father: {fileID: 1144552094}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -34, y: -22}
-  m_SizeDelta: {x: 1026.23, y: 703.2495}
+  m_SizeDelta: {x: -893.7701, y: -376.7505}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &879964602
 MonoBehaviour:
@@ -737,10 +735,10 @@ RectTransform:
   m_Father: {fileID: 879964601}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -287, y: 137.06653}
-  m_SizeDelta: {x: 233.19373, y: 64.13312}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 226, y: -214.43347}
+  m_SizeDelta: {x: -792.8063, y: -638.8669}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &944315999
 MonoBehaviour:
@@ -1037,9 +1035,9 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 293.59686, y: 137.06653}
-  m_SizeDelta: {x: 233.19373, y: 64.13312}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -219.40314, y: -214.43347}
+  m_SizeDelta: {x: -792.8063, y: -638.8669}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1032972650
 MonoBehaviour:
@@ -1303,10 +1301,10 @@ RectTransform:
   m_Father: {fileID: 879964601}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -2.4000244, y: 62.5}
-  m_SizeDelta: {x: 233.19373, y: 64.13312}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -2.4000244, y: -289}
+  m_SizeDelta: {x: -792.8063, y: -638.8669}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1227125153
 MonoBehaviour:
@@ -1354,7 +1352,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 230086653}
         m_TargetAssemblyTypeName: SaveLoadSystem, Assembly-CSharp
-        m_MethodName: LoadStageFromJson
+        m_MethodName: LoadFromJson
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

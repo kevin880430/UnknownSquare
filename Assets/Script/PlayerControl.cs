@@ -27,7 +27,7 @@ public class PlayerControl : MonoBehaviour
     public static bool isMega;
     public float Scale=0.01f;
     public static string Stage;
-    
+    public static float PlayTimer;
     
 
     public PlayerData PlayerData { get; private set; }
@@ -42,6 +42,8 @@ public class PlayerControl : MonoBehaviour
         //シーンの情報を保存
         Stage = SceneManager.GetActiveScene().name;
         
+
+
     }
     private void OnEnable()
     {
@@ -50,6 +52,7 @@ public class PlayerControl : MonoBehaviour
             transform.localScale = PlayerData.Size;
             PlayerHealth.currentHealth = PlayerData.Health;
             ShapeChange.currentShapeIndex = PlayerData.Shape;
+            PlayTimer = PlayerData.PlayTime;
     }
 
     private void Update()
@@ -86,6 +89,9 @@ public class PlayerControl : MonoBehaviour
         {
             rb.mass = initialMass;
         }
+        //プレイタイム足していく
+        PlayTimer += Time.deltaTime;
+
 
     }
 

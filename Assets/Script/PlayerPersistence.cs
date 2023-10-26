@@ -16,6 +16,7 @@ public static class PlayerPersistence
         PlayerPrefs.SetFloat("PlayerScale_x", Player.transform.localScale.x);
         PlayerPrefs.SetFloat("PlayerScale_y", Player.transform.localScale.y);
         PlayerPrefs.SetFloat("PlayerScale_z", Player.transform.localScale.z);
+        PlayerPrefs.SetFloat("PlayTime", PlayerControl.PlayTimer);
     }  
  public static PlayerData LoadData()
     {
@@ -28,6 +29,7 @@ public static class PlayerPersistence
         float scale_y = PlayerPrefs.GetFloat("PlayerScale_y");
         float scale_z = PlayerPrefs.GetFloat("PlayerScale_z");
         int shape = PlayerPrefs.GetInt("Shape");
+        float PlayTime= PlayerPrefs.GetFloat("PlayTime");
 
         PlayerData playerData = new PlayerData()
         {
@@ -35,9 +37,10 @@ public static class PlayerPersistence
             Location = new Vector3(x, y, z),
             Health = health,
             Size = new Vector3(scale_x, scale_y, scale_z),
-            Shape= shape
+            Shape= shape,
+            PlayTime= PlayTime
 
-        };
+    };
         //ÉfÅ[É^Çï‘ãp
         return playerData;
     }

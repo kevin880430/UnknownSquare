@@ -17,4 +17,6 @@ public class PlayerDataJson
     public int Shape;
     //ステージ
     public string Stage;
+    public string SaveTime;
+    public float PlayTime;
 }
